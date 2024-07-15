@@ -3,23 +3,16 @@ class Solution
 public:
     vector<int> findDuplicates(vector<int> &nums)
     {
-        sort(nums.begin(), nums.end());
-        vector<int> arr;
-        for (int i = 0; i <= nums.size() - 1; i++)
+        vector<int> ans;
+
+        for (int i = 0; i < nums.size(); i++)
         {
-            if (i == nums.size() - 1)
+            if (nums[abs(nums[i]) - 1] < 0)
             {
-                continue;
+                ans.push_back(abs(nums[i]));
             }
-            else if (nums[i] == nums[i + 1])
-            {
-                arr.push_back(nums[i]);
-            }
-            else
-            {
-                continue;
-            }
+            nums[abs(nums[i]) - 1] = -nums[abs(nums[i]) - 1];
         }
-        return arr;
+        return ans;
     }
 };
